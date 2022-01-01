@@ -1,0 +1,310 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.main__container {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  top: 0;
+  left: 0;
+  background: #2193b0; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #6dd5ed,
+    #2193b0
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #6dd5ed, #2193b0);
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  margin: 0px;
+}
+
+.main__container form {
+  width: 90%;
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.weatherContainer {
+  width: 90%;
+  height: 73vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0 auto;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.weatherFirstContainer {
+  width: 100%;
+  height: 34vh;
+  display: flex;
+  justify-content: space-between;
+}
+.localWeatherReport,
+.seaForecastReport {
+  width: 47%;
+  height: 100%;
+
+  background: rgba(93, 93, 93, 0);
+  background: rgba(93, 93, 93, 0.05);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: white;
+}
+
+.localWeatherReport h1,
+.seaForecastReport h1 {
+  width: 90%;
+  font-size: 16px;
+  padding: 15px;
+  text-align: center;
+  font-weight: bold;
+  margin: 0 auto;
+  border-bottom: 2px solid white;
+}
+.activeWeatherContent {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 30px;
+}
+.activeContentLeft {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.activeContentLeft img {
+  filter: drop-shadow(5px 5px 5px #707070);
+  height: 120px;
+}
+.activeContentLeft h3 {
+  font-size: 13px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.activeContentRight {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.activeContentRight h2 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.activeContentRight h4 {
+  font-size: 15px;
+  text-align: center;
+  margin: 0px;
+}
+
+.activeContentRight h3 {
+  font-size: 16px;
+  margin: 0px;
+}
+
+.seaForecastReport ul {
+  width: 90%;
+
+  margin: 30px auto;
+}
+
+.seaForecastReport ul li {
+  width: 100%;
+  margin: 8px 0;
+  position: relative;
+}
+
+.seaForecastReport ul li span {
+  position: absolute;
+  right: 15px;
+}
+
+.weatherSecondContainer {
+  width: 100%;
+  height: 38vh;
+  background: rgba(93, 93, 93, 0);
+  background: rgba(93, 93, 93, 0.05);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+}
+
+.weatherFiveDaysContainer {
+  width: 20%;
+
+  height: 100%;
+}
+
+.weatherFiveDaysContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.weatherFiveDaysContainer:nth-child(2),
+.weatherFiveDaysContainer:nth-child(3),
+.weatherFiveDaysContainer:nth-child(4),
+.weatherFiveDaysContainer:nth-child(5) {
+  border-left: 2px solid white;
+}
+.weatherFiveDaysContainer h4 {
+  font-weight: bold;
+  font-size: 27px;
+  margin-bottom: 5px;
+}
+.weatherFiveDaysContainer h3 {
+  font-weight: bold;
+  font-size: 30px;
+}
