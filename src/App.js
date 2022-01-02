@@ -19,6 +19,7 @@ function App() {
     }
     let currentInputValue = inputRef.current.value;
     dispatch(fetchWeatherData(currentInputValue));
+    inputRef.current.value = "";
   };
 
   const defaultWeatherContent = actions.weatherData.map((data) => {
@@ -38,6 +39,7 @@ function App() {
 
     return (
       <div key={data.cityName} className={classes.weatherContainer}>
+        <h6>{data.cityName}</h6>
         <div className={classes.weatherFirstContainer}>
           <div className={classes.localWeatherReport}>
             <h1>LOCAL WEATHER REPORT</h1>
@@ -63,7 +65,8 @@ function App() {
                 WIND SPEED (KM/H) <span>{`${weatherData.wind_spd * 3.6}`}</span>
               </li>
               <li ref={listRef}>
-                WIND GUSTS (KM/H) <span>{weatherData.wind_gust_spd * 3.6}</span>
+                WIND GUSTS (KM/H)
+                <span>{(weatherData.wind_gust_spd * 3.6).toFixed(2)}</span>
               </li>
               <li ref={listRef}>
                 WIND DIRECTION <span>{weatherData.wind_cdir}</span>

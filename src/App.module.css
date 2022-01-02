@@ -308,3 +308,10 @@ table {
   font-weight: bold;
   font-size: 30px;
 }
+
+.weatherContainer h6 {
+  color: white;
+  font-size: 40px;
+  text-align: center;
+  margin: 25px 0px 25px;
+}
