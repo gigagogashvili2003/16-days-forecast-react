@@ -20,6 +20,7 @@ function App() {
     let currentInputValue = inputRef.current.value;
     dispatch(fetchWeatherData(currentInputValue));
     inputRef.current.value = "";
+    inputRef.current.blur();
   };
 
   const defaultWeatherContent = actions.weatherData.map((data) => {
