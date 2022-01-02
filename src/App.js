@@ -1,17 +1,19 @@
 import { useRef } from "react";
-import Notification from "./components/Notification";
 
 import { useDispatch, useSelector } from "react-redux";
 import classes from "./App.module.css";
 import { fetchWeatherData } from "./store/weather-actions";
 import ErrorCmp from "./components/UI/ErrorCmp";
 import Spinner from "./components/UI/Spinner";
+import { weatherActions } from "./store/weather-slice";
 
 function App() {
   const dispatch = useDispatch();
   const actions = useSelector((state) => state.weather);
   const inputRef = useRef();
   const listRef = useRef();
+  const specialClasses =
+    actions.weatherData.length > 0 ? classes.containerHeight : "";
   const formSubmitHandler = async (e) => {
     e.preventDefault();
     if (!inputRef.current.value) {
@@ -21,6 +23,7 @@ function App() {
     dispatch(fetchWeatherData(currentInputValue));
     inputRef.current.value = "";
     inputRef.current.blur();
+    dispatch(weatherActions.remove());
   };
 
   const defaultWeatherContent = actions.weatherData.map((data) => {
@@ -33,6 +36,7 @@ function App() {
       "Friday",
       "Saturday",
     ];
+
     const weatherData = data.weatherData[0];
     const dateTime = new Date(weatherData.datetime);
     const day = dateTime.getDay();
@@ -40,7 +44,15 @@ function App() {
 
     return (
       <div key={data.cityName} className={classes.weatherContainer}>
-        <h6>{data.cityName}</h6>
+        <div className={classes.about}>
+          <h6>
+            {data.cityName} ({data.countryCode})
+          </h6>
+          <h5>
+            Coords: (Lat: {data.lat}, Lon: {data.lon})
+          </h5>
+          <h5>Timezone: {data.timezone}</h5>
+        </div>
         <div className={classes.weatherFirstContainer}>
           <div className={classes.localWeatherReport}>
             <h1>LOCAL WEATHER REPORT</h1>
@@ -55,34 +67,53 @@ function App() {
                 <h2>{dateString}</h2>
                 <h4>{weatherData.weather.description}</h4>
                 <h3>{`${weatherData.high_temp} °C`}</h3>
-                <h3>{`${(weatherData.high_temp * 9) / 5 + 32} °F`}</h3>
+                <h3>{`${((weatherData.high_temp * 9) / 5 + 32).toFixed(
+                  2
+                )} °F`}</h3>
               </div>
             </div>
           </div>
           <div className={classes.seaForecastReport}>
-            <h1>SEA FORECAST REPORT</h1>
+            <h1>MORE INFORMATION</h1>
             <ul>
               <li ref={listRef}>
-                WIND SPEED (KM/H) <span>{`${weatherData.wind_spd * 3.6}`}</span>
+                WIND SPEED (KM/H){" "}
+                <span>{`${(weatherData.wind_spd * 3.6).toFixed(2)}`} KM/H</span>
               </li>
               <li ref={listRef}>
                 WIND GUSTS (KM/H)
-                <span>{(weatherData.wind_gust_spd * 3.6).toFixed(2)}</span>
+                <span>{(weatherData.wind_gust_spd * 3.6).toFixed(2)} KM/H</span>
               </li>
               <li ref={listRef}>
                 WIND DIRECTION <span>{weatherData.wind_cdir}</span>
               </li>
               <li ref={listRef}>
-                MAX TEMP (°C) <span>{weatherData.max_temp}</span>
+                MAX TEMP (°C) <span>{weatherData.max_temp} °C</span>
               </li>
               <li ref={listRef}>
-                MIN TEMP (°C) <span>{weatherData.min_temp}</span>
+                MIN TEMP (°C) <span>{weatherData.min_temp} °C</span>
               </li>
               <li ref={listRef}>
-                AVG TEMP (°C) <span>{weatherData.temp}</span>
+                AVG TEMP (°C) <span>{weatherData.temp} °C</span>
               </li>
               <li ref={listRef}>
-                AVERAGE CLOUD COVER (%) <span>{weatherData.clouds}</span>
+                AVERAGE CLOUD COVER (%) <span>{weatherData.clouds} %</span>
+              </li>
+              <li ref={listRef}>
+                PROBABILITY OF PRECIPITATION (%)
+                <span>{weatherData.pop} %</span>
+              </li>
+              <li ref={listRef}>
+                ACCUMULATED SNOWFALL (mm){" "}
+                <span>{weatherData.snow.toFixed(2)} mm</span>
+              </li>
+              <li ref={listRef}>
+                SNOW DEPTH (mm){" "}
+                <span>{weatherData.snow_depth.toFixed(2)} mm</span>
+              </li>
+              <li ref={listRef}>
+                AVERAGE SEA LEVEL PRESSURE (mb)
+                <span>{weatherData.slp.toFixed(2)} mb</span>
               </li>
             </ul>
           </div>
@@ -92,13 +123,16 @@ function App() {
             const fiveDaysDate = new Date(data.datetime);
             const fiveDaysDay = fiveDaysDate.getDay();
             const fiveDaysString = days[fiveDaysDay];
+            const splitedDate = fiveDaysDate.toString().split(" ");
+            const monthName = splitedDate[1];
+            const dateNumber = splitedDate[2];
 
             return (
               <div
                 key={Math.random()}
                 className={classes.weatherFiveDaysContainer}
               >
-                <h2>{fiveDaysString}</h2>
+                <h2>{`${fiveDaysString} ${monthName} ${dateNumber}`}</h2>
                 <img
                   src={`https://www.weatherbit.io/static/img/icons/${data.weather.icon}.png`}
                 />
@@ -114,22 +148,14 @@ function App() {
 
   return (
     <>
-      <main className={classes["main__container"]}>
-        {actions.notification && (
-          <Notification
-            status={actions.notification.status}
-            title={actions.notification.title}
-            message={actions.notification.message}
-          />
-        )}
-
+      <main className={`${classes["main__container"]} ${specialClasses}`}>
         <form onSubmit={formSubmitHandler}>
           <div className="input-group mb-3">
             <input
               ref={inputRef}
               type="text"
               className="form-control"
-              placeholder="ქალაქის სახელი (როგორც ინგლისურად, ასევე ქართულად)"
+              placeholder="ქალაქის სახელი ( ნებისმიერ ენაზე )"
             />
             <button className="btn btn-danger" type="submit">
               მოძებნე
@@ -144,6 +170,9 @@ function App() {
         )}
         {actions.notification && actions.notification.status === "pending" && (
           <Spinner />
+        )}
+        {!actions.notification && (
+          <h1 className={classes.welcome}>Welcome ;) </h1>
         )}
       </main>
     </>

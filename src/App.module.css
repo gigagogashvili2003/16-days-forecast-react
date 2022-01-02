@@ -138,29 +138,30 @@ table {
   position: relative;
   top: 0;
   left: 0;
-  background: #2193b0; /* fallback for old browsers */
+  background: #095a6e; /* fallback for old browsers */
   background: -webkit-linear-gradient(
     to right,
-    #6dd5ed,
+    #1b7386,
     #2193b0
   ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #6dd5ed, #2193b0);
+  background: linear-gradient(to right, #00a8ce, #2193b0);
 
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   margin: 0px;
 }
-
+.containerHeight {
+  height: 200vh;
+}
 .main__container form {
   width: 90%;
   position: absolute;
-  top: 50px;
+  top: 15px;
   left: 50%;
   transform: translateX(-50%);
 }
 
 .weatherContainer {
   width: 90%;
-  height: 73vh;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -170,11 +171,13 @@ table {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 .weatherFirstContainer {
   width: 100%;
-  height: 34vh;
+
   display: flex;
+  margin-bottom: 10px;
   justify-content: space-between;
 }
 .localWeatherReport,
@@ -206,7 +209,7 @@ table {
   display: flex;
   width: 100%;
   justify-content: space-between;
-  padding: 30px;
+  padding: 42px;
 }
 .activeContentLeft {
   width: 50%;
@@ -216,10 +219,10 @@ table {
 }
 .activeContentLeft img {
   filter: drop-shadow(5px 5px 5px #707070);
-  height: 120px;
+  height: 220px;
 }
 .activeContentLeft h3 {
-  font-size: 13px;
+  font-size: 20px;
   margin-top: 10px;
   font-weight: bold;
 }
@@ -233,18 +236,18 @@ table {
 }
 
 .activeContentRight h2 {
-  font-size: 20px;
+  font-size: 35px;
   font-weight: bold;
 }
 
 .activeContentRight h4 {
-  font-size: 15px;
+  font-size: 30px;
   text-align: center;
   margin: 0px;
 }
 
 .activeContentRight h3 {
-  font-size: 16px;
+  font-size: 35px;
   margin: 0px;
 }
 
@@ -256,7 +259,7 @@ table {
 
 .seaForecastReport ul li {
   width: 100%;
-  margin: 8px 0;
+  margin: 10px 0;
   position: relative;
 }
 
@@ -267,7 +270,7 @@ table {
 
 .weatherSecondContainer {
   width: 100%;
-  height: 38vh;
+
   background: rgba(93, 93, 93, 0);
   background: rgba(93, 93, 93, 0.05);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
@@ -278,6 +281,7 @@ table {
   color: white;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   padding: 30px;
 }
 
@@ -285,6 +289,7 @@ table {
   width: 20%;
 
   height: 100%;
+  margin: 20px 0;
 }
 
 .weatherFiveDaysContainer {
@@ -293,12 +298,24 @@ table {
   align-items: center;
 }
 
+.weatherFiveDaysContainer h2 {
+  font-size: 20px;
+}
 .weatherFiveDaysContainer:nth-child(2),
 .weatherFiveDaysContainer:nth-child(3),
 .weatherFiveDaysContainer:nth-child(4),
-.weatherFiveDaysContainer:nth-child(5) {
+.weatherFiveDaysContainer:nth-child(5),
+.weatherFiveDaysContainer:nth-child(7),
+.weatherFiveDaysContainer:nth-child(8),
+.weatherFiveDaysContainer:nth-child(9),
+.weatherFiveDaysContainer:nth-child(10),
+.weatherFiveDaysContainer:nth-child(12),
+.weatherFiveDaysContainer:nth-child(13),
+.weatherFiveDaysContainer:nth-child(14),
+.weatherFiveDaysContainer:nth-child(15) {
   border-left: 2px solid white;
 }
+
 .weatherFiveDaysContainer h4 {
   font-weight: bold;
   font-size: 27px;
@@ -308,10 +325,35 @@ table {
   font-weight: bold;
   font-size: 30px;
 }
-
-.weatherContainer h6 {
+.about {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 50px;
+}
+.about h6 {
   color: white;
   font-size: 40px;
   text-align: center;
-  margin: 25px 0px 25px;
+
+  font-weight: bold;
+}
+
+.about h5 {
+  color: white;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.welcome {
+  position: absolute;
+  top: 50%;
+  font-size: 60px;
+  left: 50%;
+  color: white;
+  transform: translate(-50%, -50%);
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  letter-spacing: 4px;
 }

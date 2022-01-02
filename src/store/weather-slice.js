@@ -22,7 +22,7 @@ const weatherSlice = createSlice({
       const weatherItem = action.payload;
 
       const filteredAllData = action.payload.weatherData.splice(1);
-      const onlyFiveData = filteredAllData.slice(0, 5);
+      const onlyFiveData = filteredAllData.slice();
 
       state.weatherData.push({
         cityName: weatherItem.cityName,
@@ -34,6 +34,9 @@ const weatherSlice = createSlice({
       });
       state.filteredData = filteredAllData;
       state.onlyFiveData = onlyFiveData;
+    },
+    remove(state) {
+      state.weatherData = [];
     },
   },
 });
