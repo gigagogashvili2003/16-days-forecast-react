@@ -1,13 +1,45 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.3.6,
+* Autoprefixer: v10.3.1
+* Browsers: last 4 version
+*/
+
 .errorContainer {
   position: absolute;
   top: 50%;
   left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   font-size: 45px;
   color: darkred;
   font-weight: bold;
   font-family: "Poppins", sans-serif;
+  text-align: center;
+  line-height: 60px;
+}
+
+/* Responsive */
+
+@media (max-width: 600px) {
+  .errorContainer {
+    font-size: 30px;
+    line-height: 40px;
+  }
+}
+@media (max-width: 400px) {
+  .errorContainer {
+    font-size: 20px;
+    line-height: 30px;
+  }
 }

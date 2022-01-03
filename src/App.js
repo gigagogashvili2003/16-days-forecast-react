@@ -77,42 +77,42 @@ function App() {
             <h1>MORE INFORMATION</h1>
             <ul>
               <li ref={listRef}>
-                WIND SPEED (KM/H){" "}
+                Wind Speed (KM/H)
                 <span>{`${(weatherData.wind_spd * 3.6).toFixed(2)}`} KM/H</span>
               </li>
               <li ref={listRef}>
-                WIND GUSTS (KM/H)
+                Wind Gusts (KM/H)
                 <span>{(weatherData.wind_gust_spd * 3.6).toFixed(2)} KM/H</span>
               </li>
               <li ref={listRef}>
-                WIND DIRECTION <span>{weatherData.wind_cdir}</span>
+                Wind Direction <span>{weatherData.wind_cdir}</span>
               </li>
               <li ref={listRef}>
-                MAX TEMP (°C) <span>{weatherData.max_temp} °C</span>
+                Max Temp (°C) <span>{weatherData.max_temp} °C</span>
               </li>
               <li ref={listRef}>
-                MIN TEMP (°C) <span>{weatherData.min_temp} °C</span>
+                Min Temp (°C) <span>{weatherData.min_temp} °C</span>
               </li>
               <li ref={listRef}>
-                AVG TEMP (°C) <span>{weatherData.temp} °C</span>
+                Avg Temp (°C) <span>{weatherData.temp} °C</span>
               </li>
               <li ref={listRef}>
-                AVERAGE CLOUD COVER (%) <span>{weatherData.clouds} %</span>
+                Average Cloud Cover (%) <span>{weatherData.clouds} %</span>
               </li>
               <li ref={listRef}>
-                PROBABILITY OF PRECIPITATION (%)
+                Probability Of Precipitation (%)
                 <span>{weatherData.pop} %</span>
               </li>
               <li ref={listRef}>
-                ACCUMULATED SNOWFALL (mm){" "}
+                Accumulated Snowfall (mm)
                 <span>{weatherData.snow.toFixed(2)} mm</span>
               </li>
               <li ref={listRef}>
-                SNOW DEPTH (mm){" "}
+                Snow Depth (mm)
                 <span>{weatherData.snow_depth.toFixed(2)} mm</span>
               </li>
               <li ref={listRef}>
-                AVERAGE SEA LEVEL PRESSURE (mb)
+                Average Sea Level Pressure (mb)
                 <span>{weatherData.slp.toFixed(2)} mb</span>
               </li>
             </ul>
